@@ -9,11 +9,13 @@ function FadeIn({
   delay = 0,
   className = "",
   direction = "up",
+  style,
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
   direction?: "up" | "left" | "right" | "none";
+  style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
@@ -29,6 +31,7 @@ function FadeIn({
       animate={inView ? { opacity: 1, y: 0, x: 0 } : initial}
       transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
+      style={style}
     >
       {children}
     </motion.div>
